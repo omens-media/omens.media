@@ -1,0 +1,944 @@
+/* ==========================================================
+   OMENS
+   Design System + Base Styles
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   FONT FACES
+   ---------------------------------------------------------- */
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Knockout";
+  src: url("../fonts/knockout.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+
+/* ----------------------------------------------------------
+   TOKENS
+   ---------------------------------------------------------- */
+
+:root {
+
+  /* COLORS */
+
+  --color-pink: #ED005B;
+
+  --color-black: #141414;
+  --color-white: #ffffff;
+  --color-grey: #eeeeec;
+
+  --color-text: #141414;
+  --color-text-inverse: #ffffff;
+
+
+  /* TYPOGRAPHY */
+
+  --font-body: "Inter", Arial, sans-serif;
+  --font-display: "Knockout", Impact, sans-serif;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+
+
+  /* BASELINE GRID — 8PX */
+
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
+  --space-15: 120px;
+  --space-16: 128px;
+  --space-20: 160px;
+  --space-24: 192px;
+
+
+  /* LAYOUT */
+
+  --page-gutter: 48px;
+
+  --content-width: 1440px;
+  --copy-width: 720px;
+
+  --panel-min-height: 100svh;
+
+
+  /* TYPOGRAPHIC SCALE */
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-md: 18px;
+  --text-lg: 24px;
+
+  --display-sm: clamp(20px, 2.5vw, 36px);
+  --display-md: clamp(28px, 4vw, 56px);
+  --display-xl: clamp(44px, 8.5vw, 120px);
+
+
+  /* LINE HEIGHTS
+     Deliberately aligned to 8px rhythm where practical.
+  */
+
+  --leading-xs: 16px;
+  --leading-sm: 24px;
+  --leading-base: 24px;
+  --leading-md: 32px;
+  --leading-lg: 32px;
+
+
+  /* TRACKING */
+
+  --tracking-tight: -0.03em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+
+
+  /* MOTION */
+
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --duration-fast: 160ms;
+  --duration-base: 240ms;
+
+
+  /* STACKING */
+
+  --z-hero: 1;
+  --z-brands: 2;
+  --z-founder: 3;
+  --z-contact: 4;
+  --z-footer: 5;
+}
+
+
+/* ----------------------------------------------------------
+   RESET
+   ---------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+
+  scroll-behavior: smooth;
+
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background: var(--color-black);
+
+  color: var(--color-text);
+
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-light);
+  line-height: var(--leading-base);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
+
+  overflow-x: hidden;
+}
+
+main,
+section,
+footer,
+div {
+  min-width: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+address {
+  font-style: normal;
+}
+
+
+/* ----------------------------------------------------------
+   ACCESSIBILITY
+   ---------------------------------------------------------- */
+
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
+
+
+/* ----------------------------------------------------------
+   PANEL SYSTEM
+
+   Every new section sticks to the viewport and the following
+   panel rises over it.
+   ---------------------------------------------------------- */
+
+.panel {
+  position: sticky;
+  top: 0;
+
+  width: 100%;
+  min-height: var(--panel-min-height);
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  box-shadow:
+    0 -8px 24px rgba(0, 0, 0, 0.2),
+    0 -24px 64px rgba(0, 0, 0, 0.2);
+}
+
+
+.hero {
+  z-index: var(--z-hero);
+}
+
+.brands {
+  z-index: var(--z-brands);
+}
+
+.founder {
+  z-index: var(--z-founder);
+}
+
+.contact {
+  z-index: var(--z-contact);
+}
+
+/* ----------------------------------------------------------
+   TYPOGRAPHY QUALITY
+   ---------------------------------------------------------- */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-kerning: normal;
+  font-synthesis: none;
+
+  text-rendering: auto;
+
+  overflow-wrap: break-word;
+}
+
+
+/* DISPLAY TYPE */
+
+.hero__logo,
+.founder__title,
+.contact__title {
+  font-kerning: normal;
+
+  text-rendering: optimizeLegibility;
+  text-wrap: balance;
+
+  font-synthesis: none;
+}
+
+
+/* BODY / SUPPORTING COPY */
+
+.hero__tagline,
+.brands__intro,
+.founder__copy,
+.founder__signature,
+.contact__details,
+.site-footer {
+  font-kerning: normal;
+  font-synthesis: none;
+}
+
+
+/* LONGER READING COPY */
+
+.founder__copy {
+  text-wrap: pretty;
+}
+
+
+/* LINKS */
+
+a {
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.14em;
+}
+
+strong,
+b {
+  font-weight: 400;
+}
+
+em,
+i {
+  font-style: normal;
+}
+/* ----------------------------------------------------------
+   HERO
+   ---------------------------------------------------------- */
+
+.hero {
+  position: sticky;
+
+  display: grid;
+  place-items: center;
+
+  min-height: 100svh;
+
+  background: var(--color-pink);
+  color: var(--color-black);
+
+  padding:
+    var(--space-8)
+    var(--page-gutter);
+}
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 45%,
+      rgba(0, 0, 0, 0.08) 70%,
+      rgba(0, 0, 0, 0.28) 100%
+    );
+
+  z-index: 1;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.hero__logo {
+  width: clamp(140px, 20vw, 300px);
+  line-height: 0;
+}
+
+.hero__logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+}
+
+.hero__tagline {
+  margin-top: var(--space-4);
+  color: var(--color-text-inverse);
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-light);
+  line-height: var(--leading-sm);
+}
+
+.hero__scroll {
+  position: absolute;
+
+  left: 50%;
+  bottom: var(--space-5);
+  color: var(--color-text-inverse);
+  transform: translateX(-50%);
+
+  display: grid;
+  place-items: center;
+
+  width: var(--space-6);
+  height: var(--space-6);
+
+  font-size: 24px;
+  line-height: 1;
+
+  transition:
+    transform var(--duration-base) var(--ease-standard),
+    opacity var(--duration-fast) ease;
+}
+
+.hero__scroll:hover {
+  transform: translateX(-50%) translateY(4px);
+}
+
+
+/* ----------------------------------------------------------
+   BRANDS
+   ---------------------------------------------------------- */
+
+.brands {
+  display: grid;
+  place-items: center;
+
+  background: var(--color-black);
+  color: var(--color-white);
+
+  padding:
+    var(--space-12)
+    clamp(48px, 7vw, 112px);
+}
+
+.brands__inner {
+  width: min(100%, 1000px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brands__intro {
+  margin-bottom: var(--space-20);
+
+  font-family: var(--font-body);
+
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-light);
+  line-height: var(--leading-sm);
+
+  text-align: center;
+}
+
+.brands__grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  column-gap: var(--space-8);
+  row-gap: var(--space-10);
+
+  align-items: center;
+}
+
+.brands__grid img {
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: 64px;
+
+  margin-inline: auto;
+
+  object-fit: contain;
+
+  filter: brightness(0) invert(1);
+
+  transform: scale(var(--logo-scale, 1));
+  transform-origin: center;
+}
+
+.logo--pfizer {
+  --logo-scale: 1.3;
+}
+
+.logo--ikea {
+  --logo-scale: 0.78;
+}
+
+.logo--aritzia {
+  --logo-scale: 0.78;
+}
+
+.logo--cbc {
+  --logo-scale: 1.35;
+}
+
+
+/* ----------------------------------------------------------
+   FOUNDER
+   ---------------------------------------------------------- */
+
+.founder {
+  display: grid;
+  place-items: center;
+
+  background: var(--color-white);
+  color: var(--color-black);
+  background-repeat: repeat;
+  background-position: center;
+
+  padding:
+    var(--space-16)
+    var(--page-gutter);
+}
+
+.founder__inner {
+  width: min(100%, 960px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.founder__title {
+  font-family: var(--font-display);
+
+  font-size: var(--display-md);
+  font-weight: var(--font-weight-regular);
+
+  line-height: 0.88;
+
+  letter-spacing: var(--tracking-normal);
+
+  text-transform: uppercase;
+}
+
+.founder__copy {
+  width: min(100%, var(--copy-width));
+
+  margin-top: var(--space-6);
+
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-light);
+  line-height: var(--leading-base);
+}
+
+.founder__copy p + p {
+  margin-top: var(--space-3);
+}
+
+.founder__signature {
+  margin-top: var(--space-5);
+
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-xs);
+}
+
+
+/* ----------------------------------------------------------
+   CONTACT
+   ---------------------------------------------------------- */
+
+.contact {
+  display: grid;
+  place-items: center;
+
+  min-height: 100svh;
+
+  background: var(--color-pink);
+  color: var(--color-black);
+
+  padding:
+    var(--space-16)
+    var(--page-gutter);
+}
+
+.contact__inner {
+  width: min(100%, 960px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.contact__title {
+  font-family: var(--font-display);
+  color: var(--color-text-inverse);
+  font-size: var(--display-md);
+  font-weight: var(--font-weight-regular);
+
+  line-height: 0.84;
+
+  letter-spacing: var(--tracking-normal);
+
+  text-transform: uppercase;
+}
+
+.contact__details {
+  margin-top: var(--space-6);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 0;
+  color: var(--color-text-inverse);
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-lg);
+}
+
+.contact__details a {
+  position: relative;
+}
+
+
+.contact__socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: var(--space-1);
+}
+
+.contact__socials a {
+  position: relative;
+}
+
+
+/* ----------------------------------------------------------
+   FOOTER
+   ---------------------------------------------------------- */
+
+.site-footer {
+  position: relative;
+
+  z-index: var(--z-footer);
+
+  min-height: 56px;
+
+  display: grid;
+  place-items: center;
+
+  padding:
+    var(--space-2)
+    var(--page-gutter);
+
+  background: var(--color-black);
+  color: var(--color-white);
+
+  text-align: center;
+}
+
+.site-footer p {
+  font-size: 10px;
+  font-weight: var(--font-weight-light);
+
+  line-height: var(--leading-xs);
+
+  opacity: 0.72;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   LARGE DESKTOP
+   ---------------------------------------------------------- */
+
+@media (min-width: 1600px) {
+
+  :root {
+    --page-gutter: 64px;
+  }
+
+  .brands__grid {
+    column-gap: var(--space-16);
+  }
+
+}
+
+
+/* ----------------------------------------------------------
+   TABLET / SMALL DESKTOP
+   ---------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+
+  :root {
+    --page-gutter: 32px;
+
+    --copy-width: 640px;
+  }
+
+  .brands {
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
+  }
+
+  .brands__intro {
+    margin-bottom: var(--space-8);
+  }
+
+  .brands__grid {
+    column-gap: var(--space-8);
+    row-gap: var(--space-8);
+  }
+
+  .brands__grid img {
+    height: 48px;
+  }
+
+}
+
+
+/* ----------------------------------------------------------
+   MOBILE
+   ---------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+  :root {
+    --page-gutter: 24px;
+
+    --display-sm: clamp(40px, 12vw, 56px);
+    --display-md: clamp(48px, 15vw, 72px);
+    --display-xl: clamp(72px, 28vw, 120px);
+  }
+
+
+  /* HERO */
+
+  .hero {
+    padding:
+      var(--space-6)
+      var(--page-gutter);
+  }
+
+  .hero__logo {
+    line-height: 0.74;
+  }
+
+  .hero__tagline {
+    margin-top: var(--space-3);
+  }
+
+  .hero__scroll {
+    bottom: var(--space-3);
+  }
+
+
+  /* BRANDS */
+
+  .brands {
+    min-height: 100svh;
+  background-color: var(--color-black);
+  background-image: url("../images/bg-grey.webp");
+  background-repeat: repeat;
+  background-position: top left;
+    padding:
+      var(--space-10)
+      var(--page-gutter);
+  }
+
+  .brands__intro {
+    margin-bottom: var(--space-8);
+  }
+
+  .brands__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    column-gap: var(--space-6);
+    row-gap: var(--space-6);
+  }
+
+  .brands__grid img {
+    height: 40px;
+  }
+
+
+  /* FOUNDER */
+
+  .founder {
+    min-height: 100svh;
+    padding:
+      var(--space-12)
+      var(--page-gutter);
+  }
+
+  .founder__copy {
+    margin-top: var(--space-5);
+
+    font-size: var(--text-md);
+    line-height: var(--leading-md);
+  }
+
+  .founder__copy p + p {
+    margin-top: var(--space-3);
+  }
+
+  .founder__signature {
+    margin-top: var(--space-4);
+
+    max-width: 280px;
+  }
+
+
+  /* CONTACT */
+
+  .contact {
+    min-height: 100svh;
+
+    padding:
+      var(--space-12)
+      var(--page-gutter);
+  }
+
+  .contact__details {
+    margin-top: var(--space-5);
+  }
+
+}
+
+
+/* ----------------------------------------------------------
+   VERY SMALL MOBILE
+   ---------------------------------------------------------- */
+
+@media (max-width: 420px) {
+
+  :root {
+    --page-gutter: 16px;
+  }
+
+  .brands__grid {
+    column-gap: var(--space-4);
+    row-gap: var(--space-5);
+  }
+
+  .brands__grid img {
+    height: 32px;
+  }
+
+}
+
+
+/* ----------------------------------------------------------
+   SHORT VIEWPORTS
+   Prevent content from getting murdered on landscape phones
+   and tiny laptop windows.
+   ---------------------------------------------------------- */
+
+@media (max-height: 700px) and (min-width: 701px) {
+
+  .brands,
+  .founder,
+  .contact {
+    min-height: 720px;
+  }
+
+}
+
+
+/* ----------------------------------------------------------
+   REDUCED MOTION
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+}
+
+
+
+/* ----------------------------------------------------------
+   HIDE SCROLLBAR
+   ---------------------------------------------------------- */
+
+html {
+  scrollbar-width: none;
+}
+
+body {
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* ----------------------------------------------------------
+   SECTION CONTENT REVEAL
+   ---------------------------------------------------------- */
+
+.hero__content,
+.brands__inner,
+.founder__inner,
+.contact__inner {
+  opacity: 0;
+  transform: translateY(0px);
+
+  transition:
+    opacity 3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 3s cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: opacity, transform;
+}
+
+.hero__content.is-visible,
+.brands__inner.is-visible,
+.founder__inner.is-visible,
+.contact__inner.is-visible {
+  opacity: 0.9;
+  transform: translateY(0);
+}

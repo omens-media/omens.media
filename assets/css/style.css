@@ -917,6 +917,18 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.button {
+  display: inline-block;
+  padding: 14px 24px;
+  background: #fafafa;
+  color: #ED005B;
+  text-decoration: none;
+  font-weight: 400;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
 /* ----------------------------------------------------------
    SECTION CONTENT REVEAL
    ---------------------------------------------------------- */

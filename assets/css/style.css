@@ -919,7 +919,7 @@ body::-webkit-scrollbar {
 
 .button {
   display: inline-block;
-  padding: 14px 24px;
+  padding: 14px 240px;
   background: #fafafa;
   color: #ED005B;
   text-decoration: none;
@@ -927,6 +927,7 @@ body::-webkit-scrollbar {
   border-radius: 4px;
   cursor: pointer;
 margin-top: 100px;
+   
 }
 
 
